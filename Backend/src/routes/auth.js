@@ -7,7 +7,7 @@ router.post("/login", login); // Define a POST route for login using the login c
 
 router.get("/logout", logout); // Define a GET route for logout using the logout controller
 
-router.get("/signup",signup); // Define a GET route for signup using the signup controller
+router.post("/signup",signup); // Define a GET route for signup using the signup controller
 
 
 export default router; // Export the router

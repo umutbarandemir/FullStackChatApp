@@ -2,13 +2,13 @@ import { generateToken } from "../lib/utils.js";
 import User from "../models/userModel.js"; // Import the User model
 import bcrypt from "bcryptjs"; // Import bcrypt for password hashing
 
-export const login = async (req, res) => {
-    // res.send("Login route is working"); // Send a response when the root route is accessed
-
+export const signup = async (req, res) => {
+    // res.send("signup route is working"); // Send a response when the root route is accessed
+   
     const { email, password, fullName } = req.body; // Destructure email and password from the request body
     try {
 
-        if(password.lenghth < 6 || password.length > 30) {
+        if(password.length < 6 || password.length > 30) {
             return res.status(400).json({ message: "Password must be between 6 and 30 characters" }); // Send a 400 response if the password length is invalid
         }
 
@@ -43,8 +43,8 @@ export const login = async (req, res) => {
     }
 };
 
-export const signup = async (req, res) => {
-    res.send("signup route is working"); // Send a response when the root route is accessed
+export const login = async (req, res) => {
+    res.send("Login route is working"); // Send a response when the root route is accessed   
 };
 
 export const logout = async (req, res) => {
