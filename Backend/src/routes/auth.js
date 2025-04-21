@@ -1,5 +1,6 @@
 import express from "express"; // Importing express to create a router
 import { login, logout, signup } from "../controllers/authcontroller.js";
+
 const router = express.Router();     
 
 router.post("/login", login); // Define a POST route for login using the login controller);
