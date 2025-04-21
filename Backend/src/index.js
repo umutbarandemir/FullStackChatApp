@@ -9,6 +9,9 @@ dotenv.config(); // Load environment variables from .env file
 
 const PORT = process.env.PORT || 5001; // Set the port to either the environment variable PORT or 5000
 
+app.use(express.json()); // Middleware to parse JSON request bodies
+app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded request bodies
+
 app.use("/api/auth",authRoutes);
 
 
