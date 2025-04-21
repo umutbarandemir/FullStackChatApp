@@ -1,6 +1,6 @@
 import { generateToken } from "../lib/utils.js";
-import User from "../models/user.js"; // Import the User model
-import bcrypt from "bcrypt"; // Import bcrypt for password hashing
+import User from "../models/userModel.js"; // Import the User model
+import bcrypt from "bcryptjs"; // Import bcrypt for password hashing
 
 export const login = async (req, res) => {
     // res.send("Login route is working"); // Send a response when the root route is accessed
