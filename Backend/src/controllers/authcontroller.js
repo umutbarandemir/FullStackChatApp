@@ -6,6 +6,11 @@ export const signup = async (req, res) => {
     // res.send("signup route is working"); // Send a response when the root route is accessed
    
     const { email, password, fullName } = req.body; // Destructure email and password from the request body
+
+    if (!email || !password || !fullName) {
+        return res.status(400).json({ message: "Please fill all the fields" }); // Send a 400 response if any field is missing
+    }
+
     try {
 
         if(password.length < 6 || password.length > 30) {
