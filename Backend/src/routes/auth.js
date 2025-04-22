@@ -1,5 +1,6 @@
 import express from "express"; // Importing express to create a router
-import { login, logout, signup } from "../controllers/authcontroller.js";
+import { login, logout, signup , updateProfile} from "../controllers/authcontroller.js";
+import { protectRoute } from "../middleware/authMiddleware.js"; // Importing the protectRoute middleware
 
 const router = express.Router();     
 
@@ -7,7 +8,8 @@ router.post("/login", login); // Define a POST route for login using the login c
 
 router.post("/logout", logout); // Define a GET route for logout using the logout controller
 
-router.post("/signup",signup); // Define a GET route for signup using the signup controller
+router.post("/signup", signup); // Define a GET route for signup using the signup controller
 
+router.get("/update-profile", protectRoute ,updateProfile); // Define a GET route for update-profile using the updateProfile controller
 
 export default router; // Export the router

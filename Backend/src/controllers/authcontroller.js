@@ -90,3 +90,8 @@ export const logout = async (req, res) => {
         console.error("Error logging out:", error); // Log the error to the console
     }
 };
+
+export const updateProfile = async (req, res) => {
+
+   
+}
