@@ -1,8 +1,12 @@
 import express from "express";
-import authRoutes from "./routes/auth.js"; // Importing the auth routes
 import dotenv from "dotenv"; // Importing dotenv to load environment variables
-import {connectDB} from "./lib/db.js"; // Importing the database connection function
 import cookieParser from "cookie-parser"; // Importing cookie-parser to parse cookies
+
+import authRoutes from "./routes/auth.js"; // Importing the auth routes
+import textRoutes from "./routes/text.js"; // Importing the message routes
+
+import {connectDB} from "./lib/db.js"; // Importing the database connection function
+
 
 const app = express();
 
@@ -15,6 +19,7 @@ app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-enco
 app.use(cookieParser()); // Middleware to parse cookies from the request
 
 app.use("/api/auth",authRoutes);
+app.use("/api/text",textRoutes);
 
 
 // Start the server
