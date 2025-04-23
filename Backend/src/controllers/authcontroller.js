@@ -1,6 +1,7 @@
 import { generateToken } from "../lib/utils.js";
 import User from "../models/userModel.js"; // Import the User model
 import bcrypt from "bcryptjs"; // Import bcrypt for password hashing
+import cloudinary from "../lib/cloudinary.js";
 
 export const signup = async (req, res) => {
     // res.send("signup route is working"); // Send a response when the root route is accessed
@@ -57,7 +58,7 @@ export const login = async (req, res) => {
         const user = await User.findOne({ email }); // Find the user in the database by email
 
         if (!user) {
-            return res.status(404).json({ message: "User not found" }); // Send a 404 response if the user is not found
+            return res.status(404).json({ message: "User not found!!" }); // Send a 404 response if the user is not found
         }
 
         const isMatch = await bcrypt.compare(password, user.password); // Compare the provided password with the hashed password in the database
@@ -93,5 +94,38 @@ export const logout = async (req, res) => {
 
 export const updateProfile = async (req, res) => {
 
-   
+    const { fullName, email } = req.body; // Destructure fullName and email from the request body
+
+    try {
+        const { profilePic } = req.body; // Destructure profilePic from the request body
+        const userId = req.user._id; // Get the user ID from the request object
+
+        if(!profilePic) {
+            return res.status(400).json({ message: "Please provide a profile picture" }); // Send a 400 response if the profile picture is not provided
+        }
+
+        // Upload the profile picture to Cloudinary
+        const uploadResponse = await cloudinary.uploader.upload(profilePic, {
+            folder: "profile_pics", // Specify the folder in Cloudinary where the image will be stored
+        });
+
+        const updatedUser = await User.findByIdAndUpdate(userId, {profilePic:uploadResponse.secure_url},{new:true}); // Update the user's profile picture in the database
+
+        res.status(200).json({ message: "Profile updated successfully", user: updatedUser }); // Send a 200 response if the profile is updated successfully
+
+    } catch (error) {
+
+        res.status(500).json({ message: "Internal server error" }); // Send a 500 response if an error occurs
+        console.error("Error updating profile:", error); // Log the error to the console
+        
+    }
+}
+
+export const checkUser = async (req, res) => {
+    try {
+        res.status(200).json({ user: req.user }); // Send a 200 response with the user information if the user is authenticated
+    } catch (error) {
+        res.status(500).json({ message: "Internal server error" }); // Send a 500 response if an error occurs
+        console.error("Error checking user:", error); // Log the error to the console
+    }
 }
