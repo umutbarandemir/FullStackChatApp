@@ -1,6 +1,8 @@
 ## Frontend
 
+`` npm i react-router-dom react-hot-toast``
 `` npm run yelda`` -> to run the project
+`` npm install tailwindcss @tailwindcss/vite `` -> tailwind
 
 ## BashCommands
 
