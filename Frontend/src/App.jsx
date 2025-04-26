@@ -1,19 +1,29 @@
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import Signup from './pages/Signup'
+import Login from './pages/Login'
+import Settings from './pages/Settings'
+import Profile from './pages/Profile'
 
 function App() {
 
 
   return (
-    <>
+    <div>
  
-      <h1 className='text-red-100'>Vite + React</h1>
-          <button className="btn btn-xs">Xsmall</button>
-          <button className="btn btn-sm">Small</button>
-          <button className="btn">Medium</button>
-          <button className="btn btn-lg">Large</button>
-          <button className="btn btn-xl">Xlarge</button>
+      <Navbar />
      
-    </>
+      <Routes>
+        <Route path="/" element={<Home></Home>} />  
+        <Route path="/signup" element={<Signup></Signup>} />
+        <Route path="/login" element={<Login></Login>} />
+        <Route path="/settings" element={<Settings></Settings>} />
+        <Route path="/profile" element={<Profile></Profile>} />
+      </Routes>
+
+    </div>
   )
 }
 
