@@ -2,7 +2,15 @@
 
 `` npm i react-router-dom react-hot-toast``
 `` npm run yelda`` -> to run the project
+
+# Tailwind setup
 `` npm install tailwindcss @tailwindcss/vite `` -> tailwind
+Added  `` @import "tailwindcss"; `` to the index.css file
+Added `` import tailwindcss from '@tailwindcss/vite' `` and `` tailwindcss(),`` to the vite.config.js file
+
+# DaisyUI
+`` npm i -D daisyui@latest ``
+`` @plugin "daisyui"; `` -> Added to the index.css
 
 ## BashCommands
 
