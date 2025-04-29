@@ -10,6 +10,7 @@ import { useEffect } from 'react'
 import { useAuthStore } from './store/useAuthStore'
 
 import {Loader} from 'lucide-react';
+import { Toaster } from 'react-hot-toast'
 
 
 
@@ -46,7 +47,7 @@ function App() {
         <Route path="/settings" element={authUser ? <Settings></Settings> : <Navigate to="/login"></Navigate>} />
         <Route path="/profile" element={authUser ? <Profile></Profile> : <Navigate to="/login"></Navigate>} />
       </Routes>
-
+      <Toaster></Toaster>
     </div>
   )
 }

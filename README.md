@@ -5,7 +5,7 @@
 `` npm i axios zustand`` Zustand -> global state managment
 
 `` npm i lucide-react ``
-
+`` https://react-hot-toast.com/ `` -> React hot toast, notifications
 
 # Tailwind setup
 `` npm install tailwindcss @tailwindcss/vite `` -> tailwind

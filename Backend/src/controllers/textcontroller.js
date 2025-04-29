@@ -1,5 +1,6 @@
 import User from "../models/userModel.js"; // Import the User model
 import Text from "../models/textModel.js"; // Import the Text model
+import cloudinary from "../lib/cloudinary.js";
 
 export const getUsersForSidebar = async (req, res) => {
     try {
