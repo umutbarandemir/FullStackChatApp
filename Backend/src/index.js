@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv"; // Importing dotenv to load environment variables
 import cookieParser from "cookie-parser"; // Importing cookie-parser to parse cookies
+import cors from "cors"; // Importing cors to enable Cross-Origin Resource Sharing
 
 import authRoutes from "./routes/auth.js"; // Importing the auth routes
 import textRoutes from "./routes/text.js"; // Importing the message routes
@@ -17,6 +18,7 @@ const PORT = process.env.PORT || 5001; // Set the port to either the environment
 app.use(express.json()); // Middleware to parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded request bodies
 app.use(cookieParser()); // Middleware to parse cookies from the request
+app.use(cors({ origin: "http://localhost:5173", credentials: true })); // Enable CORS for the specified origin and allow credentials
 
 app.use("/api/auth",authRoutes);
 app.use("/api/text",textRoutes);

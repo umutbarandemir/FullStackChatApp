@@ -2,6 +2,10 @@
 
 `` npm i react-router-dom react-hot-toast``
 `` npm run yelda`` -> to run the project
+`` npm i axios zustand`` Zustand -> global state managment
+
+`` npm i lucide-react ``
+
 
 # Tailwind setup
 `` npm install tailwindcss @tailwindcss/vite `` -> tailwind
@@ -26,6 +30,8 @@ Added `` import tailwindcss from '@tailwindcss/vite' `` and `` tailwindcss(),`` 
 `` npm run yelda`` -> to start the server
 
 ``  "type": "module", `` -> this was added to the package.json in the backend file to use ES6
+
+`` npm i cors ``
 
 ## NOTES
 
