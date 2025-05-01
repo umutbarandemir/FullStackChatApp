@@ -12,8 +12,6 @@ import { useAuthStore } from './store/useAuthStore'
 import {Loader} from 'lucide-react';
 import { Toaster } from 'react-hot-toast'
 
-
-
 function App() {
 
   const { authUser,checkAuth,isCheckingAuth } = useAuthStore();
@@ -39,7 +37,7 @@ function App() {
     <div>
  
       <Navbar />
-     
+      <main className="pt-16 px-4"> {/* pt-16 to avoid navbar overlap */ }
       <Routes>
         <Route path="/" element={authUser ? <Home></Home> : <Navigate to="/login"></Navigate>} />  
         <Route path="/signup" element={!authUser ? <Signup></Signup> : <Navigate to="/"></Navigate>} />
@@ -47,6 +45,8 @@ function App() {
         <Route path="/settings" element={authUser ? <Settings></Settings> : <Navigate to="/login"></Navigate>} />
         <Route path="/profile" element={authUser ? <Profile></Profile> : <Navigate to="/login"></Navigate>} />
       </Routes>
+      </main>
+      
       <Toaster></Toaster>
     </div>
   )

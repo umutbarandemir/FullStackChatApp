@@ -16,7 +16,7 @@ const textSchema = new mongoose.Schema({
     },
     image:{
         type: String,
-    }
+    },
 },{timestamps:true});
 
 const Text = mongoose.model("Text", textSchema); // Create a model named "Text" based on the textSchema
