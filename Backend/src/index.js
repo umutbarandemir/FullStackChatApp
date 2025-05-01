@@ -15,8 +15,9 @@ dotenv.config(); // Load environment variables from .env file
 
 const PORT = process.env.PORT || 5001; // Set the port to either the environment variable PORT or 5000
 
-app.use(express.json()); // Middleware to parse JSON request bodies
-app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded request bodies
+// Allow larger JSON payloads (e.g., 10MB)
+app.use(express.json({ limit: '10mb' })); // Middleware to parse JSON request bodies
+app.use(express.urlencoded({ extended: true , limit: '10mb' })); // Middleware to parse URL-encoded request bodies
 app.use(cookieParser()); // Middleware to parse cookies from the request
 app.use(cors({ origin: "http://localhost:5173", credentials: true })); // Enable CORS for the specified origin and allow credentials
 

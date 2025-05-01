@@ -37,7 +37,7 @@ function App() {
     <div>
  
       <Navbar />
-      <main className="pt-16 px-4"> {/* pt-16 to avoid navbar overlap */ }
+      <main className="pt-20 px-4"> {/* pt-16 to avoid navbar overlap */ }
       <Routes>
         <Route path="/" element={authUser ? <Home></Home> : <Navigate to="/login"></Navigate>} />  
         <Route path="/signup" element={!authUser ? <Signup></Signup> : <Navigate to="/"></Navigate>} />

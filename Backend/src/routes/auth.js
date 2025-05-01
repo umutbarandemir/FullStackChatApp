@@ -10,7 +10,7 @@ router.post("/logout", logout); // Define a GET route for logout using the logou
 
 router.post("/signup", signup); // Define a GET route for signup using the signup controller
 
-router.get("/update-profile", protectRoute , updateProfile); // Define a GET route for update-profile using the updateProfile controller
+router.put("/update-profile", protectRoute , updateProfile); // Define a PUT route for update-profile using the updateProfile controller
 
 router.get("/check", protectRoute, checkUser); // Define a GET route for check using the checkUser controller
 

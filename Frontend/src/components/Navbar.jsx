@@ -21,7 +21,15 @@ const Navbar = () => {
           </div>
 
           {/* right side */}
+
           <div className="flex items-center gap-2">
+                        
+            {authUser && authUser.fullName && (
+              <div className="hidden sm:flex items-center px-3 py-1 rounded-lg text-sm font-medium"> {/* bg-base-200 to add background */}
+                Welcome {authUser.fullName}
+              </div>
+            )}
+
             <Link to={"/settings"} className={`btn btn-sm gap-2 transition-colors hover:opacity-80`}>
               <Settings className="w-4 h-4" />
               <span className="hidden sm:inline">Settings</span>
@@ -38,6 +46,7 @@ const Navbar = () => {
                   <LogOut className="size-5" />
                   <span className="hidden sm:inline">Logout</span>
                 </button>
+                
               </>
             )}
           </div>
