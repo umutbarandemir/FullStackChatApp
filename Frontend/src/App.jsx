@@ -7,14 +7,17 @@ import Login from './pages/Login'
 import Settings from './pages/Settings'
 import Profile from './pages/Profile'
 import { useEffect } from 'react'
-import { useAuthStore } from './store/useAuthStore'
-
+import { useAuthStore } from './store/useAuthStore.js'
+import { useThemeStore } from './store/useThemeStore.js'
 import {Loader} from 'lucide-react';
 import { Toaster } from 'react-hot-toast'
+
 
 function App() {
 
   const { authUser,checkAuth,isCheckingAuth } = useAuthStore();
+
+  const { theme } = useThemeStore();
 
   useEffect(() => {
     const checkUserAuth = async () => {
@@ -34,7 +37,7 @@ function App() {
 
   
   return (
-    <div>
+    <div data-theme={theme}>
  
       <Navbar />
       <main className="pt-20 px-4"> {/* pt-16 to avoid navbar overlap */ }

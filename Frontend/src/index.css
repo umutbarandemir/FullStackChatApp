@@ -1,4 +1,5 @@
 /* tailwind impoort*/
 @import "tailwindcss";
-@plugin "daisyui";
-
+@plugin "daisyui" {
+    themes: all;
+  }

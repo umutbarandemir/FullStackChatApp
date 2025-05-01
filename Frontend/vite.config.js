@@ -4,8 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(),tailwindcss()],
-  daisyui:{
-    themes:["light","dark","coffee","forest","luxury"],
-  }
+  plugins: [react(),tailwindcss()], 
 })
+ /* daisyui:{
+    themes:["light","dark","coffee","forest","luxury","halloween","valentine","cyberpunk","acid","sunset","pastel","black",],
+  }
+ */
