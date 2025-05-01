@@ -37,7 +37,7 @@ function App() {
 
   
   return (
-    <div data-theme={theme}>
+    <div data-theme={theme} className="min-h-screen bg-base-100 ">
  
       <Navbar />
       <main className="pt-20 px-4"> {/* pt-16 to avoid navbar overlap */ }
@@ -45,7 +45,7 @@ function App() {
         <Route path="/" element={authUser ? <Home></Home> : <Navigate to="/login"></Navigate>} />  
         <Route path="/signup" element={!authUser ? <Signup></Signup> : <Navigate to="/"></Navigate>} />
         <Route path="/login" element={!authUser ? <Login></Login> : <Navigate to="/"></Navigate> } />
-        <Route path="/settings" element={authUser ? <Settings></Settings> : <Navigate to="/login"></Navigate>} />
+        <Route path="/settings" element={<Settings></Settings>} />
         <Route path="/profile" element={authUser ? <Profile></Profile> : <Navigate to="/login"></Navigate>} />
       </Routes>
       </main>
