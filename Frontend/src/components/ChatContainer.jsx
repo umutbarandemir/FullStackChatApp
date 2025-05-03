@@ -8,9 +8,9 @@ import TextSkeleton from './skeletons/TextSkeleton.jsx'
 
 function ChatContainer() {
 
-  const { getTexts, isTextsLoading, selectedUser} = useChatStore();
+  const { texts, getTexts, isTextsLoading, selectedUser} = useChatStore();
 
-  // const { authUser } = useAuthStore();
+  const { authUser } = useAuthStore();
 
   useEffect(()=>{
     getTexts(selectedUser._id);
