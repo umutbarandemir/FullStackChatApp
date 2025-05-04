@@ -29,7 +29,7 @@ export const useChatStore = create((set,get) => ({
         } catch (error) {
             console.error('Error checking authentication:', error);
             toast.error('Error fetching texts. Please try again.');
-            set({ texts: [], isTextsLoading: false });
+            set({ isTextsLoading: false });
         }
     },
 

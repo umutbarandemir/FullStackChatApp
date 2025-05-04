@@ -22,8 +22,8 @@ export const getTexts = async (req, res) => {
 
         const texts = await Text.find({
             $or: [
-                { sender: loggedInUserId, receiver: id }, // Find texts where the logged-in user is the sender and the other user is the receiver
-                { sender: id, receiver: loggedInUserId } // Find texts where the other user is the sender and the logged-in user is the receiver
+                { senderId: loggedInUserId, receiverId: id }, // Find texts where the logged-in user is the sender and the other user is the receiver
+                { senderId: id, receiverId: loggedInUserId } // Find texts where the other user is the sender and the logged-in user is the receiver
             ]
         });
 
