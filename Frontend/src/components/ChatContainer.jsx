@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect , useRef} from 'react'
 import { useChatStore } from '../store/useChatStore.js'
 import { useAuthStore } from '../store/useAuthStore.js'
 import TextInput from './TextInput.jsx'
@@ -12,9 +12,17 @@ function ChatContainer() {
 
   const { authUser } = useAuthStore();
 
+  const textEndRef = useRef(null);
+
   useEffect(()=>{
     getTexts(selectedUser._id);
   },[selectedUser._id, getTexts]);
+
+  useEffect(() => {
+    if (textEndRef.current && texts) {
+      textEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [texts]);
 
   if (isTextsLoading) {
     return (
@@ -32,7 +40,7 @@ function ChatContainer() {
       
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {texts.map((text) => (
-              <div key={text._id} className={`chat ${text.senderId === authUser._id ? "chat-end" : "chat-start"}`}>
+              <div key={text._id} className={`chat ${text.senderId === authUser._id ? "chat-end" : "chat-start"}`} ref={textEndRef}>
                 <div className=" chat-image avatar">
                   <div className="size-10 rounded-full border">
                     <img
