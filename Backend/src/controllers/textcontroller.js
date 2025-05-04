@@ -17,13 +17,13 @@ export const getUsersForSidebar = async (req, res) => {
 
 export const getTexts = async (req, res) => {
     try {
-        const { id } = req.params; // Get the ID from the request parameters
+        const { id:ReceivingUser } = req.params; // Get the ID from the request parameters
         const loggedInUserId = req.user._id; // Get the logged-in user's ID from the request object
 
         const texts = await Text.find({
             $or: [
-                { senderId: loggedInUserId, receiverId: id }, // Find texts where the logged-in user is the sender and the other user is the receiver
-                { senderId: id, receiverId: loggedInUserId } // Find texts where the other user is the sender and the logged-in user is the receiver
+                { senderId: loggedInUserId, receiverId: ReceivingUser }, // Find texts where the logged-in user is the sender and the other user is the receiver
+                { senderId: ReceivingUser, receiverId: loggedInUserId } // Find texts where the other user is the sender and the logged-in user is the receiver
             ]
         });
 
