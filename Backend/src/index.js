@@ -6,10 +6,8 @@ import cors from "cors"; // Importing cors to enable Cross-Origin Resource Shari
 import authRoutes from "./routes/auth.js"; // Importing the auth routes
 import textRoutes from "./routes/text.js"; // Importing the message routes
 
-import {connectDB} from "./lib/db.js"; // Importing the database connection function
-
-
-const app = express();
+import { connectDB } from "./lib/db.js"; // Importing the database connection function
+import { server, app } from "./lib/socket.js"; // Importing the Socket.IO server instance
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -26,7 +24,7 @@ app.use("/api/text",textRoutes);
 
 
 // Start the server
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
     connectDB(); // Connect to the database when the server starts
 });

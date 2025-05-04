@@ -33,6 +33,11 @@ Added `` import tailwindcss from '@tailwindcss/vite' `` and `` tailwindcss(),`` 
 
 `` npm i cors ``
 
+## Socket.io
+
+`` npm i socket.io-client `` -> in the frontend
+`` ``
+
 ## NOTES
 
 CTRL + L -> clears bash console or type "clear" in the console
