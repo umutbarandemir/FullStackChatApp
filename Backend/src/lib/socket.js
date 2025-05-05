@@ -11,11 +11,23 @@ const io = new Server(server, { // Create a new Socket.IO server instance
   },
 });
 
+// for storing online users
+const userSocketMapping = {}; 
+
 io.on('connection', (socket) => { // Listen for a new connection
     console.log('User connected:', socket.id); 
 
+    const userId = socket.handshake.query.userId; // Get the userId from the query parameters
+    if (userId) {
+        userSocketMapping[userId] = socket.id; // Store the socket ID for the user
+    }
+
+    io.emit('onlineUsers', Object.keys(userSocketMapping)); // Emit the online users to all connected clients
+
     socket.on('disconnect', () => { // Listen for disconnection
         console.log('User disconnected:', socket.id);
+        delete userSocketMapping[userId]; // Remove the user from the mapping
+        io.emit('onlineUsers', Object.keys(userSocketMapping)); // Emit the updated online users to all connected clients
     });
 });
 
