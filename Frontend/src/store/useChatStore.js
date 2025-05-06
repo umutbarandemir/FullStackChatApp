@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import toast from "react-hot-toast";
 import { axiosInstance } from "../lib/axios.js";
+import { useAuthStore } from "./useAuthStore.js"; 
 
 export const useChatStore = create((set,get) => ({
     texts:[],
@@ -44,5 +45,25 @@ export const useChatStore = create((set,get) => ({
         }
 
     },
+
+    subscribeToNewTexts: () => {
+        const selectedUser = get().selectedUser; // Get the selected user from the store
+
+        if (!selectedUser) return; // If no user is selected, do nothing
+
+        const socket = useAuthStore.getState().socket; // Get the socket from the auth store
+
+        socket.on('newText', (newText) => { // Listen for new text events
+            set((state) => ({ texts: [...state.texts, newText] })); // Update the texts in the store with the new text
+        });
+
+    },
+
+    unsubscribeFromNewTexts: () => { //when logging out or switching users, we need to unsubscribe from the new texts event
+        const socket = useAuthStore.getState().socket; // Get the socket from the auth store
+
+        socket.off('newText'); // Remove the listener for new text events
+    },
+
     setSelectedUser: (user) => set({ selectedUser: user }),
 }));

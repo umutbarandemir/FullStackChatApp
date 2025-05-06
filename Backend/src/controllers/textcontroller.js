@@ -2,6 +2,8 @@ import User from "../models/userModel.js"; // Import the User model
 import Text from "../models/textModel.js"; // Import the Text model
 import cloudinary from "../lib/cloudinary.js";
 
+import {getReceiverSocketId, io} from "../lib/socket.js"; // Import the function to get the receiver's socket ID
+
 export const getUsersForSidebar = async (req, res) => {
     try {
         const loggedInUserId = req.user._id; // Get the logged-in user's ID from the request object
@@ -58,6 +60,10 @@ export const sendTexts = async (req, res) => {
         await newText.save(); // Save the new text message to the database
 
         //this is where the functionality of sending the message to the receiver will be implemented with socket.io
+        const receiverSocketId = getReceiverSocketId(receiverId); // Get the socket ID of the receiver (this function needs to be implemented)
+        if (receiverSocketId) { // If the receiver is online
+            io.to(receiverSocketId).emit("newText", newText); // Emit the "receiveMessage" event to the receiver with the new text message
+        }
 
         res.status(201).json(newText); // Send the new text message as a response with a 200 status code
 

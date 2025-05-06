@@ -8,7 +8,7 @@ import { formatMessageTime } from '../lib/utils.js'
 
 function ChatContainer() {
 
-  const { texts, getTexts, isTextsLoading, selectedUser} = useChatStore();
+  const { texts, getTexts, isTextsLoading, selectedUser, subscribeToNewTexts, unsubscribeFromNewTexts} = useChatStore();
 
   const { authUser } = useAuthStore();
 
@@ -16,7 +16,11 @@ function ChatContainer() {
 
   useEffect(()=>{
     getTexts(selectedUser._id);
-  },[selectedUser._id, getTexts]);
+    subscribeToNewTexts();
+    return () => {
+      unsubscribeFromNewTexts(); // Unsubscribe from new texts when the component unmounts
+    };
+  },[selectedUser._id, getTexts, subscribeToNewTexts, unsubscribeFromNewTexts]);
 
   useEffect(() => {
     if (textEndRef.current && texts) {
