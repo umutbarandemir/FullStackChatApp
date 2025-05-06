@@ -48,10 +48,11 @@ export const useChatStore = create((set,get) => ({
 
     subscribeToNewTexts: () => {
         const selectedUser = get().selectedUser; // Get the selected user from the store
-
-        if (!selectedUser) return; // If no user is selected, do nothing
-
         const socket = useAuthStore.getState().socket; // Get the socket from the auth store
+
+        if (!selectedUser || !socket) return; // Prevent error if selectedUser or socket is null or undefined and if no user is selected, do nothing
+
+        
 
         socket.on('newText', (newText) => { // Listen for new text events
             if (newText.senderId !== selectedUser._id) return; // If the new text is not from the selected user, do nothing
@@ -62,6 +63,8 @@ export const useChatStore = create((set,get) => ({
 
     unsubscribeFromNewTexts: () => { //when logging out or switching users, we need to unsubscribe from the new texts event
         const socket = useAuthStore.getState().socket; // Get the socket from the auth store
+
+        if (!socket) return; // Prevent error if socket is null or undefined
 
         socket.off('newText'); // Remove the listener for new text events
     },

@@ -22,7 +22,9 @@ export const useAuthStore = create((set,get) => ({
             set({ authUser: response.data.user, isCheckingAuth: false }); // Set the authenticated user in the store, try { authUser: response.data}
             get().connectSocket(); // Connect to socket after successful authentication check
         } catch (error) {
-            console.error('Error checking authentication:', error);
+            if (error?.response?.status !== 401) {
+                console.error('Error checking authentication:', error);
+            }
             set({ authUser: null, isCheckingAuth: false });
         }
     },
