@@ -54,6 +54,7 @@ export const useChatStore = create((set,get) => ({
         const socket = useAuthStore.getState().socket; // Get the socket from the auth store
 
         socket.on('newText', (newText) => { // Listen for new text events
+            if (newText.senderId !== selectedUser._id) return; // If the new text is not from the selected user, do nothing
             set((state) => ({ texts: [...state.texts, newText] })); // Update the texts in the store with the new text
         });
 

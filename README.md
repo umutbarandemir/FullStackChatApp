@@ -33,10 +33,11 @@ Added `` import tailwindcss from '@tailwindcss/vite' `` and `` tailwindcss(),`` 
 
 `` npm i cors ``
 
+``node src/seedData/userSeeds.js `` -> to add seed data to the database
+
 ## Socket.io
 
 `` npm i socket.io-client `` -> in the frontend
-`` ``
 
 ## NOTES
 
