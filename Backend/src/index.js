@@ -23,7 +23,7 @@ app.use("/api/auth",authRoutes);
 app.use("/api/text",textRoutes);
 
 
-// Start the server
+// Start the server socket.io can listen on the same port
 server.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
     connectDB(); // Connect to the database when the server starts
