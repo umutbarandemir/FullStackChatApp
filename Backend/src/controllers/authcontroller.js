@@ -6,9 +6,10 @@ import cloudinary from "../lib/cloudinary.js";
 export const signup = async (req, res) => {
     // res.send("signup route is working"); // Send a response when the root route is accessed
    
-    const { email, password, fullName } = req.body; // Destructure email and password from the request body
+    const { email, password, fullName } = req.body; // Destructure email and password from the request body  
 
     if (!email || !password || !fullName) {
+
         return res.status(400).json({ message: "Please fill all the fields" }); // Send a 400 response if any field is missing
     }
 
@@ -19,7 +20,7 @@ export const signup = async (req, res) => {
         }
 
         // Check if the user exists in the database
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email }); // Find the user in the database by email
 
         if (user) {
             return res.status(400).json({ message: "User already exists!!" }); // Send a 404 response if the user is not found
@@ -34,7 +35,7 @@ export const signup = async (req, res) => {
             password: hashedPassword, // Store the hashed password in the database
         });
 
-        if(newUser){
+        if(newUser){ // Check if the user was created successfully
             //generate token
             generateToken(newUser._id, res); // Generate a token for the user and send it in the response
             await newUser.save(); // Save the new user to the database

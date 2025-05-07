@@ -11,5 +11,7 @@ export const generateToken = (userId,res) => {
         maxAge: 604800000, // Cookie expiration time (1 week)
     });
 
+    // res.status(200).json({ message: 'Token generated successfully' }); // Send a response indicating success
+
     return token; // Return the generated token
 }
